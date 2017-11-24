@@ -1,0 +1,22 @@
+{
+    "name": "es6-airbnb",
+    "version": "0.1.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/C1103/qs_js_lesson/es6/airbnb"
+    },
+    "keywords": [
+        "es6",
+        "airbnd"
+    ],
+    "author": "C1103",
+    "license": "ISC",
+    "devDependencies": {
+        "babel-preset-airbnb": "^2.4.0"
+    }
+}
