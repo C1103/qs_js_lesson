@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>type 判断</title>
+</head>
+
+<body>
+    <script>
+        // var obj = {
+        //     "name": "loci"
+        // };
+        // // [object Object]
+        // // Object是obj原型对象
+        // console.log(obj.toString());
+        // var arr = ['1', '2'];
+        // // 1,2
+        // console.log(arr.toString());
+        // var func = function() {};
+        // // function () {}
+        // console.log(func.toString());
+        // var num = 123;
+        // console.log(num.toString());
+        // // [object Object]
+        // // 我要判断num 是数值类型
+        // // number
+        // console.log(typeof(num));
+        // // object
+        // console.log(typeof(arr));
+        // // [object Array]
+        // console.log(Object.prototype.toString.call(arr));
+        // // [object Function]
+        // console.log(Object.prototype.toString.call(func));
+        // // [object Number]
+        // console.log(Object.prototype.toString.call(num));
+        // // [object Undefined]
+        // console.log(Object.prototype.toString.call(undefined));
+        // // [object Boolean]
+        // console.log(Object.prototype.toString.call(true));
+        // // [object String]
+        // console.log(Object.prototype.toString.call('sda'));
+
+        // // 判断是否为某种类型
+        // // 封装 函数语义化
+        // // 参数 obj：any
+        // // 结果true false
+        // // var isArray = function(obj) {
+        // //     return Object.prototype.toString.call(obj) === '[object Array]';
+        // // }
+        // // var isFunction = function(obj) {
+        // //     return Object.prototype.toString.call(obj) === '[object Function]';
+        // // }
+        // // var isNumber = function(obj) {
+        // //     return Object.prototype.toString.call(obj) === '[object Number]';
+        // // }
+        // // var isUndifined = function(obj) {
+        // //     return Object.prototype.toString.call(obj) === '[object Undefined]';
+        // // }
+        // // var isBoolean = function(obj) {
+        // //     return Object.prototype.toString.call(obj) === '[object Boolean]';
+        // // }
+        // // var isString = function(obj) {
+        // //     return Object.prototype.toString.call(obj) === '[object String]';
+        // // };
+        // console.log(isArray(arr));
+        // var Type = {
+        //         isArray: function(obj) {
+        //             return Object.prototype.toString.call(obj) === '[object Array]';
+        //         },
+        //         isFunction: function(obj) {
+        //             return Object.prototype.toString.call(obj) === '[object Function]';
+        //         },
+        //         isNumber: function(obj) {
+        //             return Object.prototype.toString.call(obj) === '[object Number]';
+        //         },
+        //         isUndifined: function(obj) {
+        //             return Object.prototype.toString.call(obj) === '[object Undefined]';
+        //         },
+        //         isBoolean: function(obj) {
+        //             return Object.prototype.toString.call(obj) === '[object Boolean]';
+        //         },
+        //         isString: function(obj) {
+        //             return Object.prototype.toString.call(obj) === '[object String]';
+        //         },
+        //         isObject: function(obj) {
+        //             return Object.prototype.toString.call(obj) === '[object Object]';
+        //         }
+        //     }
+        //     // console.log(Type.isArray(arr));
+        // var key = 'Array';
+        // Type["is" + key] = 'fdfdf';
+        var Type = {};
+        for (let i = 0, type; type = ['String', 'Array', 'Function', 'Number', 'Boolean'][i++];) {
+            // console.log(i, type);
+            // 异步
+            Type[`is${type}`] = function(obj) {
+                return Object.prototype.toString.call(obj) === `[object ${type}]`;
+            }
+        }
+        var arr = 'sba';
+        console.log(Type.isString(arr));
+    </script>
+</body>
+
+</html>
