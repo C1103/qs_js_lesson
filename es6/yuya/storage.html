@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>本地存储</title>
+</head>
+
+<body>
+    <table id="student_infos">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>学校</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>分分</td>
+                <td>江西财大</td>
+            </tr>
+        </tbody>
+    </table>
+    <form action="index.php" mehtod="POST" name="userForm">
+        <div class="field">
+            <label for="user-name">姓名</label>
+            <input type="text" name="username" id="user-name">
+        </div>
+        <div class="field">
+            <label for="user-college">学校</label>
+            <input type="text" name="college" id="user-name">
+        </div>
+        <input type="submit" name="subInput" value="提交">
+    </form>
+    <script>
+        // form通过name查找
+        const oForm = document.forms["userForm"];
+        const oUserName = oForm["username"];
+        const oCollege = oForm["college"];
+        const arr = [];
+        console.log(oUserName);
+        window.onload = function() {
+            loadData();
+            oForm.addEventListener('submit', function(event) {
+                // alert('提交')
+                event.preventDefault();
+                // trim去掉空格符
+                let name = oUserName.value.trim();
+                let college = oCollege.value.trim();
+                if (name && college) {
+                    // 显示到页面上
+                    // 当key和变量名一样时  可以合并写一起
+                    const student = {
+                        name,
+                        college
+                    };
+                    arr.push(student);
+                    // console.log(student);
+                    // console.log(JSON.stringify(student));
+                    // localStorage.setItem('students',JSON.stringify(student));
+                    localStorage.setItem('students', JSON.stringify(arr));
+                    // renderStudent(student);
+                    // for(var i =0 ;i<arr.length;i++){
+                    //     renderStudent(arr[i]);
+                    // }
+                    renderStudent(student);
+                } else {
+                    alert('请输入用户名和学校');
+                }
+            }, false);
+        }
+
+        function renderStudent(student) {
+            // console.log(student);
+            let oTr = document.createElement('tr');
+            oTr.innerHTML = `
+            <td>${student.name}</td>
+            <td>${student.college}</td>
+            `;
+            document.querySelector('#student_infos tbody').appendChild(oTr);
+        }
+
+        function loadData() {
+            // 存储里面有数据吗？
+            let storStudent = JSON.parse(localStorage.getItem('students'));
+            console.log(storStudent);
+            if (storStudent) {
+                storStudent.forEach(student => {
+                    arr.push(student);
+                })
+                storStudent.map(student => {
+                    renderStudent(student);
+                })
+            } else {
+                document.querySelector('#student_infos tbody').innerHTML = `
+                    <tr>
+                        <td colspan="2" style="text-align:center;">当前没有数据</td>    
+                    </tr>
+                `
+            }
+        }
+    </script>
+</body>
+
+</html>
